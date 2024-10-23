@@ -54,6 +54,8 @@ php
 
 $string = "Hello, World!";
 echo str_replace("World", "PHP", $string); // Output: Hello, PHP!
+$str_rep = array("*", "=", "\r", "\n", "#","'","(",")");
+$string = str_replace($str_rep,"",$string);
 
 7. Find Position of Substring (strpos)
 
@@ -131,3 +133,48 @@ php
 
 $string = "Hello";
 echo strrev($string); // Output: olleH
+
+
+```php
+
+function lwh_substr($str,$start,$len = null)
+{
+	$main_string_len = lwh_strlen($str);
+    
+    if($len === null ) $len = $main_string_len;
+	if($start >=0 )
+    {
+    	$i = $start ;
+    }
+    else
+    {
+      $i = max($main_string_len + $start,0) ;
+    }
+    
+    
+  if($len < 0)
+  {
+    $main_string_len = max($main_string_len + $len,0) ;
+    $len = $main_string_len;
+  }
+  
+  $return_text = "";
+  while( $i < $main_string_len && lwh_strlen($return_text) < $len)
+  {
+    $return_text.=$str[$i];
+    $i++;
+  }
+  return $return_text;
+}
+
+function lwh_strlen($str)
+{
+    $len = 0;
+    while($str[$len] !=null)
+    {
+        $len++;
+    }
+    return $len;
+}
+
+```
